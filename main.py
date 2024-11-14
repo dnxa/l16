@@ -31,3 +31,17 @@ if dollars.isdigit() and bitcoin_info.status_code == 200:
     bitcoin = float(dollars) / float(exchange_rate)
 
     print(f"You have {bitcoin} bitcoin")
+
+
+name = input("Please enter your name: ")
+name_age_info = requests.get(f"https://api.agify.io/?name={name}")
+
+if bitcoin_info.status_code == 200:
+    name_age_info_dict = json.loads(name_age_info.text)
+
+    age = name_age_info_dict.get("age")
+
+    if age is None:
+        print(f"No name {name} in database")
+    else:
+        print(age)
