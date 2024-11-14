@@ -18,4 +18,16 @@ if cat_fact.status_code == 200:
     print(f"there are {cat_fact_vowels} vowels in fact: {cat_fact_dict.get("fact")}")
 
 
+dollars = input("Please enter dollars to convert: ")
+bitcoin_info = requests.get("https://api.coindesk.com/v1/bpi/currentprice.json")
 
+if dollars.isdigit() and bitcoin_info.status_code == 200:
+    bitcoin_info_dict = json.loads(bitcoin_info.text)
+
+    exchange_rate = bitcoin_info_dict["bpi"]["USD"]["rate"]
+
+    exchange_rate = exchange_rate.replace(",", "")
+
+    bitcoin = float(dollars) / float(exchange_rate)
+
+    print(f"You have {bitcoin} bitcoin")
