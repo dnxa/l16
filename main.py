@@ -44,4 +44,4 @@ if bitcoin_info.status_code == 200:
     if age is None:
         print(f"No name {name} in database")
     else:
-        print(age)
+        print(f"name {name} is {age} years old")
